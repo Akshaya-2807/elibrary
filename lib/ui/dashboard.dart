@@ -1,7 +1,5 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:elibrary/bloc/diditallib_bloc.dart';
-import 'package:elibrary/model/tesla_model.dart';
-import 'package:elibrary/repository/digitallib_repo.dart';
-import 'package:elibrary/ui/bookDetail.dart';
 import 'package:flutter/material.dart';
 
 class Dashboard extends StatefulWidget {
@@ -65,17 +63,14 @@ class DashboardState extends State<Dashboard> {
             padding: const EdgeInsets.all(2),
             child: InkWell(
               onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => BookDetail()),
-                );
+                context.navigateNamedTo("/book-detail");
               },
               child: Card(
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(15.0),
                 ),
                 elevation: 5,
-                child: Container(
+                child: SizedBox(
                   height: 70,
                   width: 130,
                   child: Column(
@@ -89,13 +84,13 @@ class DashboardState extends State<Dashboard> {
                       Text(
                         datas[index]["title"],
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 4,
                       ),
                       Text(
                         datas[index]["subtitle"],
                         textAlign: TextAlign.center,
-                        style: TextStyle(
+                        style: const TextStyle(
                             fontSize: 13.5,
                             color: Colors.grey,
                             fontWeight: FontWeight.bold),
@@ -113,7 +108,7 @@ class DashboardState extends State<Dashboard> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text("e-Books"),
+          title: const Text("e-Books"),
           centerTitle: true,
         ),
         // backgroundColor: Theme.of(context).primaryColor,
