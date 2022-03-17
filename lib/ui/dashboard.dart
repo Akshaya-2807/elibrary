@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:elibrary/bloc/diditallib_bloc.dart';
 import 'package:elibrary/model/tesla_model.dart';
 import 'package:elibrary/repository/digitallib_repo.dart';
@@ -66,10 +67,7 @@ class DashboardState extends State<Dashboard> {
             padding: const EdgeInsets.all(2),
             child: InkWell(
               onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => BookDetail()),
-                );
+                context.navigateNamedTo("/book-detail");
               },
               child: Card(
                 shape: RoundedRectangleBorder(
