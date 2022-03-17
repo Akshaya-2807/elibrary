@@ -1,3 +1,7 @@
+import 'package:elibrary/bloc/diditallib_bloc.dart';
+import 'package:elibrary/model/tesla_model.dart';
+import 'package:elibrary/repository/digitallib_repo.dart';
+import 'package:elibrary/ui/bookDetail.dart';
 import 'package:flutter/material.dart';
 
 class Dashboard extends StatefulWidget {
@@ -8,10 +12,46 @@ class Dashboard extends StatefulWidget {
 }
 
 class DashboardState extends State<Dashboard> {
+  late DigitalLibBloc digitalBloc;
   @override
   void initState() {
     super.initState();
+    digitalBloc = DigitalLibBloc();
+    digitalBloc.getDigitalLib();
   }
+
+  List<Map<dynamic, dynamic>> datas = [
+    {
+      "image": "assets/images/digital library.png",
+      "title": "Digital Library",
+      "subtitle": "Access e-books,videos,lecture notes,etc.,"
+    },
+    {
+      "image": "assets/images/courses.png",
+      "title": "Courses",
+      "subtitle": "Enroll to online certification courses"
+    },
+    {
+      "image": "assets/images/events.png",
+      "title": "Events",
+      "subtitle": "List of college events"
+    },
+    {
+      "image": "assets/images/meetings.png",
+      "title": "Meetings",
+      "subtitle": "Take up various online tests"
+    },
+    {
+      "image": "assets/images/diss board.png",
+      "title": "Discussion board",
+      "subtitle": "Important college events"
+    },
+    {
+      "image": "assets/images/members.png",
+      "title": "Members",
+      "subtitle": "Connect with institution's members"
+    },
+  ];
 
   Widget _buildContent(BuildContext context) {
     return GridView.builder(
@@ -20,15 +60,50 @@ class DashboardState extends State<Dashboard> {
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
         ),
-        itemCount: 6,
+        itemCount: datas.length,
         itemBuilder: (BuildContext context, int index) {
           return Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Card(
-              elevation: 5,
-              child: Container(
-                height: 70,
-                width: 100,
+            padding: const EdgeInsets.all(2),
+            child: InkWell(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => BookDetail()),
+                );
+              },
+              child: Card(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(15.0),
+                ),
+                elevation: 5,
+                child: Container(
+                  height: 70,
+                  width: 130,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Image.asset(
+                        datas[index]["image"],
+                        height: 90,
+                      ),
+                      Text(
+                        datas[index]["title"],
+                      ),
+                      SizedBox(
+                        height: 4,
+                      ),
+                      Text(
+                        datas[index]["subtitle"],
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            fontSize: 13.5,
+                            color: Colors.grey,
+                            fontWeight: FontWeight.bold),
+                      )
+                    ],
+                  ),
+                ),
               ),
             ),
           );
