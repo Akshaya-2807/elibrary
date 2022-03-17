@@ -3,8 +3,8 @@ class DigitalLibModel {
     required this.output,
   });
   late final Output output;
-  
-  DigitalLibModel.fromJson(Map<String, dynamic> json){
+
+  DigitalLibModel.fromJson(Map<String, dynamic> json) {
     output = Output.fromJson(json['output']);
   }
 
@@ -20,8 +20,8 @@ class Output {
     required this.result,
   });
   late final Result result;
-  
-  Output.fromJson(Map<String, dynamic> json){
+
+  Output.fromJson(Map<String, dynamic> json) {
     result = Result.fromJson(json['Result']);
   }
 
@@ -39,16 +39,17 @@ class Result {
   });
   late final String status;
   late final List<BookDet> bookDet;
-  
-  Result.fromJson(Map<String, dynamic> json){
+
+  Result.fromJson(Map<String, dynamic> json) {
     status = json['status'];
-    bookDet = List.from(json['BookDet']).map((e)=>BookDet.fromJson(e)).toList();
+    bookDet =
+        List.from(json['BookDet']).map((e) => BookDet.fromJson(e)).toList();
   }
 
   Map<String, dynamic> toJson() {
     final _data = <String, dynamic>{};
     _data['status'] = status;
-    _data['BookDet'] = bookDet.map((e)=>e.toJson()).toList();
+    _data['BookDet'] = bookDet.map((e) => e.toJson()).toList();
     return _data;
   }
 }
@@ -70,8 +71,8 @@ class BookDet {
   late final String imagePath;
   late final String fileType;
   late final String status;
-  
-  BookDet.fromJson(Map<String, dynamic> json){
+
+  BookDet.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     contentType = json['content_type'];
     contentCode = json['content_code'];

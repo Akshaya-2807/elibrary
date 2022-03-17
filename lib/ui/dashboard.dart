@@ -12,12 +12,11 @@ class Dashboard extends StatefulWidget {
 }
 
 class DashboardState extends State<Dashboard> {
-  late DigitalLibBloc digitalBloc;
+ 
   @override
   void initState() {
     super.initState();
-    digitalBloc = DigitalLibBloc();
-    digitalBloc.getDigitalLib();
+   
   }
 
   List<Map<dynamic, dynamic>> datas = [
